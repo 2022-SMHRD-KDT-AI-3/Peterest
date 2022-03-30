@@ -1,4 +1,5 @@
-// 제발되라
+// 슈웃~
+// 슈웃
 const modal = document.getElementById('id01')
 
 window.onclick = function(event){
