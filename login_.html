@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+	<form name="questionForm" method="post" enctype="multipart/form-data" action="/test/save">
+		<input type="hidden" name="TEST_SN" value="1">
+		
+		<ul id="questionFormList">
+		  <li>
+			<input type="hidden" name="Q_SN" value="2">
+			<input type="file" name="IMG_FILE">
+		  </li>
+		  <li>
+			...
+		  </li>
+		  ...
+		</ul>
+		<input type="submit" value="전송">
+	  </form>
+	  
+</body>
+</html>

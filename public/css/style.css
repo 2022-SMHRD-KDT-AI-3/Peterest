@@ -1,0 +1,250 @@
+/*mis estilos*/
+.linkModal a{
+	text-decoration: none;
+	outline: none;
+	cursor: zoom-in;
+}
+
+.linkModal:hover{
+	box-shadow: 4px 6px 11px 0px rgba(0,0,0,0.10);
+}
+
+.iconSearch{
+	color: #999999;
+	font-size: 20px;
+}
+
+.iconNav i{
+	font-size: 40px;
+}
+.iconNav{
+	margin-left: 16px;
+	margin-top: 2px;
+}
+.searchNav{
+	height: 45px;
+	background-color:#E9ECEF;
+}
+.activeLink{
+	color: #3E3F41 !important;
+}
+.btnNav{
+	color: #8E8E8E;
+	font-size: 17px;
+	font-weight: 500;
+	margin-top: -43px;
+	margin-left: 25px;
+	background: transparent;
+	border-radius: 30px;
+}
+.btnNav:hover{
+	background: #E9ECEF;
+	border-radius: 30px;
+}
+.linkNav{
+	margin-top: -10px;
+}
+.contBtnNav{
+	margin-top: 110px;
+}
+.containerMenu{
+	margin-bottom: -8px
+}
+
+.photoCard{
+	border-radius: 25px;
+}
+
+.avatarCard{
+	width: 35px;
+	height: 35px;
+	background-color: #ECCFC7;
+	text-align: center;
+	padding-top: 2px;
+	border-radius: 50px;
+	font-size: 20px;
+	color: #ffffff;
+	float: left;
+}
+
+.titlePhoto{
+	font-size: 18px;
+	color: #525252;
+}
+
+.descriptionPhoto{
+	font-size: 14px;
+	color: #525252;
+}
+
+.authorPhoto{
+	padding-top: 4px;
+	margin-left: 40px;
+	color: #525252;
+}
+
+.pintPhoto{
+	color: #999999;
+	font-size: 14px;
+}
+
+.showColor{
+	background-color: #EFEFEF;
+}
+
+.pinsModal{
+	width:200px;
+	margin-top: 20px;
+	margin-left: 10px;
+	color: #999999
+}
+
+.btnModal{
+	margin-right: 18px;
+	margin-top: -27px;
+	float: right;
+}
+
+.titlePhotoModal{
+	margin-left: 20px;
+	margin-top: 15px;
+	color: #525252;
+}
+
+.infoFooterModal{
+	margin-top: 16px;
+	margin-left: 15px;
+}
+
+.descripcionModalFooter{
+	padding: 15px;
+}
+
+.btnRead{
+	float: right;
+	margin-top: -45px;
+	margin-right: 19px;
+	border-radius: 5px;
+	border: none;
+	font-size: 15px;
+	width: 75px;
+	padding: 5px;
+	color: #666666;
+}
+
+.btnPin{
+	padding: 10px;
+	background-color: #E9ECEF;
+	border-radius: 50px;
+	box-shadow: 2px 3px 6px 0px rgba(0,0,0,0.50);
+	cursor: pointer;
+	
+}
+
+.btnsFloat{
+	z-index: 99999;
+	top: 75%;
+	position: fixed;
+	right: 5%;
+}
+
+.boxUpPin{
+	border: #999 2px dashed;
+	width: 200px;
+	height: 300px;
+	display: block;
+	margin: auto;
+	border-radius: 10px;
+}
+
+.boxUpPin p{
+	padding: 40px;
+	color: #666;
+	margin-top: 50px;
+}
+
+.textareaSize{
+	resize: none;
+	height: 184px !important;
+}
+
+.modal-footer{
+	justify-content: start !important;
+}
+.abs{
+	margin-left: 48%;
+}
+
+.btnPinModal1{
+	background: #ffffff;
+	border: 2px solid #EFEFEF;
+	font-weight: 500;
+	margin-right: -10px;
+	font-size: 14px;
+	color: #666;
+	
+}
+
+.btnPinModal2{
+	border-top-left-radius: 0;
+	border-bottom-left-radius:0; 
+	border: 2px solid #EFEFEF;
+	background-color: #EFEFEF;
+	font-size: 14px;
+	color: #9F9F9F;
+	font-weight: 500;
+}
+
+.contentBtnPin{
+	background-color: #EFEFEF;
+	border-radius: 50px;
+}
+
+.btnPinModal3{
+	float: right;
+	background-color: #EFEFEF;
+	font-size: 14px;
+	color: #9F9F9F;
+	font-weight: 500;
+}
+
+.titleAddPinModal, .titleInputModal{
+	color: #666666;
+}
+
+.iconDirection{
+	margin-top: 10px;
+	color: #999;
+	font-size: 18px;
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+	.card-columns {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+	.card-columns {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
+}
+
+@media (min-width: 1000px) {
+	.card-columns {
+		-webkit-column-count: 5;
+		-moz-column-count: 5;
+		column-count: 5;
+	}
+}
+
+.modal-content{
+	width: 50%;
+	height: 50%;
+	margin: 0 auto;
+	margin-top: 10%;
+}
