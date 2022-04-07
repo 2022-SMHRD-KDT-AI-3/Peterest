@@ -261,7 +261,7 @@ section > div.con {
 }
 .add_contents_container{
     padding: 35px;
-    width: 880px;
+    max-width: 880px;
     height: 674px;
     border-radius: 16px;
     position:absolute ;
