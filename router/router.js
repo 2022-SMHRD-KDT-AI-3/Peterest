@@ -614,4 +614,16 @@ router.get("/logout", function (request, response) {
 
 })
 
+router.post("/follow", function (request, response) {
+
+
+
+})
+router.post("/like", function (request, response) {
+
+    let follower_id = req.session.email;
+    let follow_id = req.body.email;
+
+
+})
 module.exports = router;
