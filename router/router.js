@@ -508,7 +508,7 @@ router.post("/upload", upload.single("img_url"), (req, res) => {
             })
         })
 
-        router.post("/delete", function(request, response){
+router.post("/info2", function(request, response){
 
             console.log(request.session.user.user_id);
             let user_id = request.session.user.user_id;
@@ -576,11 +576,49 @@ router.post("/upload", upload.single("img_url"), (req, res) => {
         router.get("/profile", function(request, response){
         
             response.render("공개 프로필",{
-        
+                
             })
             
         })
+router.post("/profile", upload.single("myimg_url"), (req, res) => {
+    try {
+        sharp(req.file.path)  // 압축할 이미지 경로
+            .resize({ width: 600 }) // 비율을 유지하며 가로 크기 줄이기
+            .withMetadata()	// 이미지의 exif데이터 유지
+            .toBuffer((err, buffer) => {
+                if (err) throw err;
+                // 압축된 파일 새로 저장(덮어씌우기)
+                fs.writeFile(req.file.path, buffer, (err) => {
+                    if (err) throw err;
+                });
 
+                let user_id = req.session.user.user_id;
+
+                let img_url = req.file.filename;
+  
+
+                console.log(req.file);
+                let sql = "update user set myimg_url = ?  where user_id = ?";
+
+                conn.query(sql, [img_url,user_id], function (err, rows) {  //sql 실행되면 만들었던 nodejs_member 테이블로 가서 입력함  그다음에 명령이 성공하든 실패하든 이쪽 뻥션으로 들어옴 실패하면 err 에 뭔가들어가고 성공하면 rows 변수에 들어감 
+
+                });
+
+            });
+    } catch (err) {
+        console.log(err);
+    }
+    res.redirect("http://127.0.0.1:3000/Main")
+
+    // res.json({
+    //     filename: `${req.file.filename}`,
+    //     filepath: `${req.file.path}`
+    // });
+
+    // res.render("main",{
+    //     rows : req.session.pin
+    // })
+});
         router.post("/select_pin",function(request, response){
 
             let text = request.body.select_text;
