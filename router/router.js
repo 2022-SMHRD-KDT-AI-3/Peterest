@@ -85,6 +85,7 @@ router.post("/login", function(request, response){         // post방식
             console.log("유저번호");
             console.log(email);
             console.log(request.session.user.user_id);
+            console.log(request.session.user.user_id);
             response.redirect("http://127.0.0.1:3000/main");
         }else{
 
@@ -130,7 +131,7 @@ router.get("/main", function(request, response){
 
             //response.redirect("http://127.0.0.1:3000/public/loginF.html")
             
-        }
+        } console.log(request.session.user.myimg_url);
     })
 
 })
@@ -146,7 +147,8 @@ router.get("/pin", function(request, response){
         
         response.render("pin",{
             pin_all : request.session.pin_all,
-            comment_if : comment_if
+            comment_if : comment_if,
+            user : request.session.user
         })
         console.log(request.session.pin_all);
         console.log("댓글정보:"+comment_if);
@@ -429,7 +431,9 @@ const upload = multer({
 });
         
 router.get('/upload', function(req, res){
-    res.render('게시물 작성 페이지');
+    res.render('게시물 작성 페이지',{
+        user: req.session.user
+    });
     console.log(req.session.pin);
     // console.log(req.session);
     // console.log(req.body);
@@ -498,13 +502,14 @@ router.post("/upload", upload.single("img_url"), (req, res) => {
         
         router.get("/info1", function(request, response){
             response.render("개인정보 수정",{
-
+                user: request.session.user
             })
         })
 
+
         router.get("/info2",function(request, response){
             response.render("계정관리",{
-
+                user: request.session.user
             })
         })
 
@@ -529,7 +534,7 @@ router.post("/info2", function(request, response){
         router.get("/info3", function(request, response){
 
             response.render("공개 프로필",{
-
+                user: request.session.user,
             })
         })
 
@@ -576,14 +581,14 @@ router.post("/info2", function(request, response){
         router.get("/profile", function(request, response){
         
             response.render("공개 프로필",{
-                
+                user: request.session.user,
             })
             
         })
 router.post("/profile", upload.single("myimg_url"), (req, res) => {
     try {
         sharp(req.file.path)  // 압축할 이미지 경로
-            .resize({ width: 600 }) // 비율을 유지하며 가로 크기 줄이기
+            .resize({ width: 30 }) // 비율을 유지하며 가로 크기 줄이기
             .withMetadata()	// 이미지의 exif데이터 유지
             .toBuffer((err, buffer) => {
                 if (err) throw err;
@@ -632,7 +637,8 @@ router.post("/profile", upload.single("myimg_url"), (req, res) => {
                     console.log(rows);
                     
                     response.render("select_pin",{
-                        rows : rows
+                        rows : rows,
+                        user : request.session.user
                     })
                 }else{ // 실패시 
                     console.log(err);
@@ -661,9 +667,6 @@ router.get("/follow", function (request, response) {
 
 })
 router.post("/like", function (request, response) {
-
-    
-
 
 })
 
