@@ -40,7 +40,7 @@
                                 d="M18 12.5a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 18 12.5m-6 0a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 12 12.5m-6 0a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 6 12.5M12 0C5.925 0 1 4.925 1 11c0 2.653.94 5.086 2.504 6.986L2 24l5.336-3.049A10.93 10.93 0 0 0 12 22c6.075 0 11-4.925 11-11S18.075 0 12 0">
                             </path>
                         </svg> </a></li>
-                <li class="my-info flex flex-ai-c"><a class="ico flex flex-jc-c flex-ai-c" href="#">
+                <li class="my-info flex flex-ai-c"><a class="ico flex flex-jc-c flex-ai-c" href="http://127.0.0.1:3000/mypage1">
                         <div class="img-box flex flex-jc-c flex-ai-c">
                             <img src="../uploads/pin_img/<%=user.myimg_url%>" alt="">
                         </div>
@@ -181,11 +181,15 @@
                                 <% for(let i=0; i<comment_if.length; i++){ %>
                                 <div style="padding-top: 15px; width: 383px;">
                                     <div style="display: inline-block; width: 48px; height: 48px; text-align: center; align-items: center;">
-                                        <a href=""><img class="mini_porofile" src="../uploads/pin_img/<%=pin_all.user_if.myimg_url%>"></a>
+                                        <%for(let j=0; j<user_data.length; j++){
+                                            if(comment_if[i].nickname == user_data[j].nickname){%>
+                                            <a href=""><img class="mini_porofile" src="../uploads/pin_img/<%=user_data[j].myimg_url%>"></a>
+                                        <%}else{
+                                        }}%> 
                                     </div> 
                                     <div style="display: inline-block; width: 329px; max-height: 100px; border: 1px solid #cdcdcd; border-radius: 25px; padding: 15px;;">
                                         <div>
-                                            <h4><%=pin_all.user_if.nickname%></h4>
+                                            <h4><%=comment_if[i].nickname%></h4>
                                         </div> 
                                         <div>
                                             
@@ -201,7 +205,7 @@
                                         </div>
                                         <div id="click_heart" class="redheart">
                                             <button style="cursor: pointer; border: #111; background-color: white; display: inline-block; font-size: 15px;"
-                                                onclick="heart_no_cut()">
+                                                onclick="heart_no_cnt()">
                                                 <div style="color: red; display: inline-block;">❤︎</div><span>  좋아요 개수 </span>
                                             </button>
                                         </div>

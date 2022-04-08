@@ -12,7 +12,7 @@ function heart_cnt(){
     document.getElementById('none_click_heart').style.display = 'none';
     document.getElementById('click_heart').style.display = 'block';
 }
-function heart_no_cut() {
+function heart_no_cnt() {
     document.getElementById('none_click_heart').style.display = 'block';
     document.getElementById('click_heart').style.display = 'none';
 }

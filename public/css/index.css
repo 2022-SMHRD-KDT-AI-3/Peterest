@@ -18,7 +18,6 @@ html {
 body {
 	font-family: var(--main-font);
   margin: 0;
-  position: relative;
 }
 
 p, figure, ul, li, a, h1, h2, h3, h4, h5, h6 {
@@ -31,14 +30,6 @@ p, figure, ul, li, a, h1, h2, h3, h4, h5, h6 {
 input, textarea {
 	width: 100%;
 	height: 100%;
-}
-
-.container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-  padding: 2em;
 }
 
 .logo {
@@ -113,4 +104,17 @@ input, textarea {
 
 .text-normal {
   font-weight: 400 !important;
+}
+.header__link:hover .header__link__wrapper {
+  background: var(--soft-gray);
+}
+
+.header__link__wrapper {
+  width: 20px;
+  height: 20px;
+  background: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }

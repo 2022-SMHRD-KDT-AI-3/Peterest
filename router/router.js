@@ -145,14 +145,26 @@ router.get("/pin", function(request, response){
     let sql = "select * from comment where pin_id=?";
     conn.query(sql,[request.session.pin_all.pin_if[0].pin_id], function(err,comment_if){
         
-        response.render("pin",{
-            pin_all : request.session.pin_all,
-            comment_if : comment_if,
-            user : request.session.user
-        })
+        if (comment_if) {
+            conn.query("select * from user", function (err, user_data) {
+                response.render("pin", {
+                    pin_all: request.session.pin_all,
+                    comment_if: comment_if,
+                    user: request.session.user,
+                    user_data: user_data
+                })
+                console.log("바보"+user_data[0].nickname);
+            })
+        }
+        
         console.log("선재" + request.session.pin_all.writer.myimg_url);
         console.log("댓글정보:"+comment_if);
+        
+
+        
     })
+    
+
 
 
 
@@ -234,10 +246,10 @@ router.post("/comment",function(req, res){
     let content = req.body.content;
     let pin_id = req.session.pin_all.pin_if[0].pin_id;
     let comment_id = null;
-    let comment_date = null;
+    let nickname = req.session.user.nickname;
     console.log("댓글달려는 핀번호:"+req.session.pin_all.pin_if[0].pin_id);
 
-    let sql = "insert into comment values(?,?,?,now())";
+    let sql = "insert into comment values(?,?,?,now(),?)";
     
     // console.log(pin_id);
     // console.log(content);
@@ -245,7 +257,7 @@ router.post("/comment",function(req, res){
     // console.log(req.body.content);
 
     // conn.query("insert into comment values('"+comment_id+"','"+pin_id+"','"+content+"')", function(err, rows){
-    conn.query(sql,[comment_id, pin_id, content], function(err, rows){
+    conn.query(sql,[comment_id, pin_id, content,nickname], function(err, rows){
         if(rows){
             // res.render("pin",{
 
