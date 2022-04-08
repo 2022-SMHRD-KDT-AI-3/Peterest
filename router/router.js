@@ -150,7 +150,7 @@ router.get("/pin", function(request, response){
             comment_if : comment_if,
             user : request.session.user
         })
-        console.log(request.session.pin_all);
+        console.log("선재" + request.session.pin_all.writer.myimg_url);
         console.log("댓글정보:"+comment_if);
     })
 
@@ -211,11 +211,12 @@ router.post("/pin", function(request, response){
                        
                     // });
                     console.log("닉네임: "+writer[0].nickname);
-                
+                    
                 }
                 else{
                 console.log(err);
                 }
+                console.log("없음" + request.session.pin_all.writer[0].myimg_url);
             });
         console.log("검색된 핀정보: "+rows[0].pin_id);
         console.log("유저정보: "+request.session.user.email);
@@ -224,6 +225,7 @@ router.post("/pin", function(request, response){
             console.log(err);
         }
         })
+        
 });
 
 // 댓글
