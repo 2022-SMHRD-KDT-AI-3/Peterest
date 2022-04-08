@@ -508,7 +508,7 @@ router.post("/upload", upload.single("img_url"), (req, res) => {
             })
         })
 
-        router.post("/info2", function(request, response){
+        router.post("/delete", function(request, response){
 
             console.log(request.session.user.user_id);
             let user_id = request.session.user.user_id;
@@ -519,7 +519,6 @@ router.post("/upload", upload.single("img_url"), (req, res) => {
             conn.query(sql,[user_id],function(err, rows){  //sql 실행되면 만들었던 nodejs_member 테이블로 가서 입력함  그다음에 명령이 성공하든 실패하든 이쪽 뻥션으로 들어옴 실패하면 err 에 뭔가들어가고 성공하면 rows 변수에 들어감 
                 //sql,[id,pw,nick] 사용자가 입력할값 순서대로 넣어준다
                 if(rows) { //만약 rows 값이 트루면
-
                     response.redirect("http://127.0.0.1:3000/home")
                 }else{ // 실패시 
                     console.log(err);
@@ -614,16 +613,25 @@ router.get("/logout", function (request, response) {
 
 })
 
-router.post("/follow", function (request, response) {
-
+router.get("/follow", function (request, response) {
+    
+    let follower_id = req.session.email;
+    let follow_id = req.body.user_id;
+    console.log(req.session.email);
+    console.log(req.body.user_id);  
 
 
 })
 router.post("/like", function (request, response) {
 
-    let follower_id = req.session.email;
-    let follow_id = req.body.email;
+    
 
 
 })
+
+
+
+
+
+
 module.exports = router;
