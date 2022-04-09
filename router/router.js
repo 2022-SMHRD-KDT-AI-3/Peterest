@@ -172,72 +172,85 @@ router.get("/pin", function(request, response){
 
 // 게시물 상세 페이지
 
-router.post("/pin", function(request, response){
- 
+router.post("/pin", function (request, response) {
+
     let pin_id = request.body.pin_id;
-    
+
     console.log(request.body.pin_id);
     console.log("핀번호: " + pin_id);
     console.log(request.session.selectpin);
 
-    
+
     let sql = "select * from pin where pin_id=?";
-    
-    conn.query("select * from pin where pin_id ="+pin_id ,function(err, rows){ 
-        
-            if(rows) { 
-//에러 err선언해서 봐보기!!
-            conn.query("select * from user where user_id ="+rows[0].user_id, function(err, writer){
-                
-                if(writer){
 
-                    console.log("여긴가: "+rows[0].user_id);
-                    console.log(request.session.user.nickname);
-                    
-                    request.session.pin_all={
-                        "pin_if" : rows,
-                        "user_if" : request.session.user,
-                        "writer" : writer,
-                        // "comment_if" : comment
-                    }
-                    
-                    response.redirect("http://127.0.0.1:3000/pin");
+    conn.query("select * from pin where pin_id =" + pin_id, function (err, rows) {
 
-                    let sql ="select * from comment where pin_id=?"
+        if (rows) {
+            //에러 err선언해서 봐보기!!
+            conn.query("select * from user where user_id =" + rows[0].user_id, function (err, writer) {
 
-                    // conn.query(sql,[rows[0].pin_id], function(err, comment){
-                    //     console.log("선택한 핀번호 : "+rows[0].pin_id);
-                        
-                    //     if(comment){
+                if (writer) {
 
-                    //         // response.render("pin",{
-                    //         //     pin_if : rows,
-                    //         //     user_if : request.session.user,
-                    //         //     writer : writer,
-                    //         //     comment_if : comment
-                    //         // });
+                    conn.query("select * from `like`", function (err, like_C) {
 
-                    //     } else{
-                    //         console.log(err);
-                    //     }
-                       
-                    // });
-                    console.log("닉네임: "+writer[0].nickname);
-                    
+
+
+                        conn.query("select * from comment where pin_id =" + pin_id, function (err, comment) {
+
+                            if (comment) {
+                                let likeList = [];
+
+                                for (let i = 0; i < comment.length; i++) {
+                                    sum = 0;
+                                    k = 0;
+                                    while (k != like_C.length) {
+                                        if (comment[i].comment_id == like_C[k].comment_id) {
+                                            sum++;
+                                        };
+                                        k++;
+                                    };
+                                    likeList.push(sum);
+                                }
+
+                                console.log("여긴가: " + rows[0].user_id);
+                                console.log(request.session.user.nickname);
+                                console.log("이게 문자냐?: " + request.session.comment_if);
+                                request.session.pin_all = {
+                                    "pin_if": rows,
+                                    "user_if": request.session.user,
+                                    "writer": writer,
+                                    "likeList": likeList
+                                    // "comment_if" : comment
+                                };
+                                response.redirect("pin");
+
+
+                            } else {
+                                console.log(err);
+                            }
+
+                        });
+
+
+
+                    });
+
+                    console.log("닉네임: " + writer[0].nickname);
+
                 }
-                else{
-                console.log(err);
+                else {
+                    console.log(err);
                 }
                 console.log("없음" + request.session.pin_all.writer[0].myimg_url);
             });
-        console.log("검색된 핀정보: "+rows[0].pin_id);
-        console.log("유저정보: "+request.session.user.email);
+            console.log("검색된 핀정보: " + rows[0].pin_id);
+            console.log("유저정보: " + request.session.user.email);
 
-        }else{ // 실패시 
+        } else { // 실패시 
             console.log(err);
         }
-        })
-        
+    })
+
 });
 
 // 댓글
@@ -673,17 +686,69 @@ router.get("/logout", function (request, response) {
 
 router.get("/follow", function (request, response) {
     
-    let follower_id = req.session.email;
-    let follow_id = req.body.user_id;
-    console.log(req.session.email);
-    console.log(req.body.user_id);  
+    let pin_id = request.session.pin_all.pin_if[0].pin_id;
+    console.log("댓글"+pin_id);
+    let sql = "select * from comment where pin_id=?";
+    let follow_id = null;
+    conn.query(sql, [request.session.pin_all.pin_if[0].pin_id], function (err, comment_if) {
 
+        if (comment_if) {
+            conn.query("select * from user", function (err, user_data) {
+                response.render("pin", {
+                    pin_all: request.session.pin_all,
+                    comment_if: comment_if,
+                    user: request.session.user,
+                    user_data: user_data
+                })
+                
+                console.log("몽총이" + comment_if.user_id);
+                console.log("바보" + request.session.user.user_id);
+                let sql = "insert into follow values(?,?,?)";
+                
+                conn.query(sql, [follow_id, user_data[0].user_id, request.session.user.user_id], function (err, rows) { 
+                    if (rows) {
+
+                    } else { // 실패시 
+                        console.log(err);
+                    }
+                })
+            })
+        }
+
+
+        
+
+    })
 
 })
-router.post("/like", function (request, response) {
+router.post("/likeup", function (request, response) {
 
+    let likeup = request.body.likeup;
+    let user_id = request.session.user.user_id;
+
+    console.log(request.session.user.user_id);
+
+
+
+    let sql = "insert into `like` values(" + null + ",?,?)";
+
+    conn.query(sql, [user_id, likeup], function (err, rows) {
+        if (rows) {
+            console.log("좋아요한 유저 아이디:" + request.session.user.user_id);
+            console.log("좋아요된 댓글 아이디:" + likeup);
+
+            console.log(request.session.pin_all);
+            request.session.likeup = {
+                "likeup": likeup,
+            }
+            response.redirect("http://127.0.0.1:3000/pin");
+
+
+        } else {
+            console.log(err);
+        }
+    })
 })
-
 
 
 
