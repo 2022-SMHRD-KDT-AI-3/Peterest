@@ -600,26 +600,28 @@ router.post("/info2", function(request, response){
 
             let sql = "select user_id from follow where follower_id = ?"
 
-            conn.query(sql, [request.session.user.user_id],function(err,rows){
-                for(let i=0; i<rows.length; i++){
-                    conn.query("select * from pin where user_id = ?", [rows[i].user_id], function(err,follow_writer){
-                        console.log("게시물 올린사람 아이디"+rows[i].user_id);
-                        if(follow_writer){
-                            for (let j = 0; j < follow_writer.length; j++) {
-                            conn.query("select * from user where user_id= ?",[rows[i].user_id], function(err,user_data){
-                                console.log("게시물 올린사람 닉네임"+user_data[j].nickname);
+            // conn.query(sql, [request.session.user.user_id],function(err,rows){
+            //     for(let i=0; i<rows.length; i++){
+            //         conn.query("select * from pin where user_id = ?", [rows[i].user_id], function(err,follow_writer){
+            //             console.log("게시물 올린사람 아이디"+rows[i].user_id);
+            //             if(follow_writer){
+            //                 console.log(rows.length);
+            //                 for (let j = 0; j < rows.length; j++) {
+            //                 conn.query("select * from user where user_id= ?",[rows[i].user_id], function(err,user_data){
+            //                     console.log("게시물 올린사람 닉네임"+user_data[i].nickname);
+            //                     console.log(user_data.length);
                                 response.render("프로필 페이지", {
                                     user: request.session.user,
-                                    rows: rows,
-                                    follow_writer: follow_writer,
-                                    user_data : user_data
+                                    // rows: rows,
+                                    // follow_writer: follow_writer,
+                                    // user_data : user_data
                                 });
-                            })
-                            }
-                        }
-                    })
-                }
-            })
+            //                 })
+            //                 }
+            //             }
+            //         })
+            //     }
+            // })
         })
 
         // 프로필 이미지 변경
