@@ -424,7 +424,26 @@ router.post("/PwFind_exe", function(request, response){ // update를 시켜주�
     })
 
 });
+router.post("/login_pw_update", function (request, response) {
 
+    let pw = request.body.update_pw;
+    let email = request.session.user.email;
+    // let name = request.session.user.name;
+    // let age = request.session.user.age;
+
+    console.log(email);
+    console.log(request.session.user.name);
+    console.log(request.session.user.age);
+    console.log(pw);
+
+    let sql = "update user set password = ? where email = ?";
+
+    conn.query(sql, [request.body.update_pw, email], function (err, rows) {
+
+        response.redirect("http://127.0.0.1:3000/main");
+        // alert("수정되었습니다.")
+    });
+});
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -671,27 +690,47 @@ router.post("/profile", upload.single("myimg_url"), (req, res) => {
     //     rows : req.session.pin
     // })
 });
-        router.post("/select_pin",function(request, response){
+router.post("/select_pin", function (request, response) {
 
-            let text = request.body.select_text;
-           
-           
-            
-            conn.query("select * from pin where title like '%"+text+"%' or detail like '%"+text+"%' or group_id like '%"+text+"%'",function(err, rows){  //sql 실행되면 만들었던 nodejs_member 테이블로 가서 입력함  그다음에 명령이 성공하든 실패하든 이쪽 뻥션으로 들어옴 실패하면 err 에 뭔가들어가고 성공하면 rows 변수에 들어감 
-                //sql,[id,pw,nick] 사용자가 입력할값 순서대로 넣어준다
-                if(rows) { //만약 rows 값이 트루면
-                    
-                    console.log(rows);
-                    
-                    response.render("select_pin",{
-                        rows : rows,
-                        user : request.session.user
-                    })
-                }else{ // 실패시 
-                    console.log(err);
-                }
-            })
+    let text = request.body.select_text;
+    let text2 = request.body.select_text2;
+
+    console.log("검색어가 무엇이더냐?? " + text);
+    console.log("검색어가 무엇이더냐?? " + text2);
+
+    if (text = "") {
+        console.log("직접검색");
+        let sql = "select * from pin where title like ? or detail like ? or group_id like ?"
+
+        conn.query(sql, [text, text, text], function (err, rows) {  //sql 실행되면 만들었던 nodejs_member 테이블로 가서 입력함  그다음에 명령이 성공하든 실패하든 이쪽 뻥션으로 들어옴 실패하면 err 에 뭔가들어가고 성공하면 rows 변수에 들어감 
+            //sql,[id,pw,nick] 사용자가 입력할값 순서대로 넣어준다
+            if (rows) { //만약 rows 값이 트루면
+
+                console.log(rows);
+                response.render("select_pin", {
+                    rows: rows,
+                    user: request.session.user
+                })
+            } else { // 실패시 
+                console.log(err);
+            }
         })
+    } else {
+        console.log("카테고리검색");
+        let sql2 = "select * from pin where title like ? or detail like ? or group_id like ?"
+        conn.query(sql2, [text2, text2, text2], function (err, rows) {
+            if (rows) {
+
+                response.render("select_pin", {
+                    rows: rows,
+                    user: request.session.user
+                })
+            } else {
+                console.log(err);
+            }
+        })
+    }
+})
 
         // router.get("/Select_Pin", function(request, response){
 
