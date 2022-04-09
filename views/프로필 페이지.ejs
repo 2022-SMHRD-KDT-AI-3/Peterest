@@ -90,28 +90,26 @@
         </div>
         </div>
         <div class="gesimul_box">
-            <%for(let i=0; i<rows.length.length; i++){%>
-                <%for(let j=0; j<follow_writer.length.length; j++){%>
+            <%for(let i=0; i<follow_writer.length; i++){%>
                 <div class="gesimul_pic">
                     <div style="width: 252px; height: px; padding: 10px;">
                         <form action="">
                             <button style="border-radius: 25%;">
-                                <img class="up_gesimul" src="../uploads/pin_img/<%=follow_writer[j].img_url%>" alt="">
+                                <img class="up_gesimul" src="../uploads/pin_img/<%=follow_writer[i].img_url%>" alt="">
                             </button>
                         </form>
                     </div>
                     <div style="float: left;">
                          <div>
-                                    <div style="display: inline-block;">
-                                        <img class="mini_porofile" src="../uploads/pin_img/<%=user_data[0].myimg_url%>">
-                                    </div>
-                                    <div style="display: inline-block; float:right; margin-top: 7px; margin-left: 10px;">
-                                        <%=user_data[0].nickname%>
-                                    </div>
-                                </div>
+                            <div style="display: inline-block;">
+                                <img class="mini_porofile" src="../uploads/pin_img/<%=user_data[0].myimg_url%>">
+                            </div>
+                            <div style="display: inline-block; float:right; margin-top: 7px; margin-left: 10px;">
+                                <%=user_data[0].nickname%>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <%}%>
                 <%}%>
             
         </div>

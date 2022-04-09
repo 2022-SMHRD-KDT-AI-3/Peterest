@@ -603,10 +603,11 @@ router.post("/info2", function(request, response){
             conn.query(sql, [request.session.user.user_id],function(err,rows){
                 for(let i=0; i<rows.length; i++){
                     conn.query("select * from pin where user_id = ?", [rows[i].user_id], function(err,follow_writer){
-                        console.log("zz"+rows[i].user_id);
+                        console.log("게시물 올린사람 아이디"+rows[i].user_id);
                         if(follow_writer){
+                            for (let j = 0; j < follow_writer.length; j++) {
                             conn.query("select * from user where user_id= ?",[rows[i].user_id], function(err,user_data){
-                                console.log("천재"+user_data[i].nickname);
+                                console.log("게시물 올린사람 닉네임"+user_data[j].nickname);
                                 response.render("프로필 페이지", {
                                     user: request.session.user,
                                     rows: rows,
@@ -614,6 +615,7 @@ router.post("/info2", function(request, response){
                                     user_data : user_data
                                 });
                             })
+                            }
                         }
                     })
                 }
@@ -692,20 +694,17 @@ router.post("/profile", upload.single("myimg_url"), (req, res) => {
         // router.get("/Select_Pin", function(request, response){
 
         // })
-router.get("/logout", function (request, response) {
-
-    delete request.session.user;
-
-    response.redirect("http://127.0.0.1:3000/home");
-
-})
-
 router.get("/follow", function (request, response) {
-    
+
     let pin_id = request.session.pin_all.pin_if[0].pin_id;
-    console.log("댓글"+pin_id);
+    console.log("댓글" + pin_id);
+    console.log("로그인한 회원정보:" + request.session.user.user_id);
     let sql = "select * from comment where pin_id=?";
     let follow_id = null;
+    let follower_id = request.session.user.user_id;
+    let user_id = request.session.pin_all.writer[0].user_id;
+    console.log("follower_id:" + follower_id);
+    console.log("user_id:" + user_id);
     conn.query(sql, [request.session.pin_all.pin_if[0].pin_id], function (err, comment_if) {
 
         if (comment_if) {
@@ -719,27 +718,39 @@ router.get("/follow", function (request, response) {
                 conn.query("select * from pin where pin_id =" + pin_id, function (err, rows) {
                     if (rows) {
                         //에러 err선언해서 봐보기!!
-                        conn.query("select * from user where user_id =" + rows[0].user_id, function (err, writer) { 
-                            console.log("작성자"+writer[0].user_id);
-                            conn.query(sql, [follow_id, writer[0].user_id, request.session.user.user_id], function (err, rows) {
-                                if (rows) {
+                        let chksql = "select * from follow where follower_id=? and user_id=?"
 
-                                } else { // 실패시 
-                                    console.log(err);
-                                }
-                            })
+                        conn.query(chksql, [follower_id, user_id], function (err, chk) {
+                            if (chk.length>=1) {
+                                console.log("팔로우 되있으면:" + chk);
+
+
+                                console.log("이미 팔로우 돼있음");
+
+                            } else {
+                                console.log("팔로우 안되있으면:" + err);
+                                let followsql = "insert into follow values(?,?,?)";
+                                conn.query(followsql, [follow_id, request.session.pin_all.writer[0].user_id, request.session.user.user_id], function (err, rows) {
+                                    if (rows) {
+
+                                    } else { // 실패시 
+                                        console.log(err);
+                                    }
+                                })
+
+                            }
+
                         })
                     }
                 })
                 console.log("바보" + request.session.user.user_id);
-                let sql = "insert into follow values(?,?,?)";
-                
-                
+
+
             })
         }
 
 
-        
+
 
     })
 
@@ -772,7 +783,13 @@ router.post("/likeup", function (request, response) {
         }
     })
 })
+router.get("/logout", function (request, response) {
 
+    delete request.session.user;
+
+    response.redirect("http://127.0.0.1:3000/home");
+
+})
 
 
 
