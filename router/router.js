@@ -194,7 +194,6 @@ router.post("/pin", function (request, response) {
                     conn.query("select * from `like`", function (err, like_C) {
 
 
-
                         conn.query("select * from comment where pin_id =" + pin_id, function (err, comment) {
 
                             if (comment) {
@@ -434,6 +433,7 @@ const multer = require("multer");
 const sharp = require("sharp");
 const path = require("path");
 const { NULL } = require("node-sass");
+const { writer } = require("repl");
 
 // uploads 폴더 없으면 생성
 // fs.readdir("uploads", (err) => {
@@ -597,11 +597,27 @@ router.post("/info2", function(request, response){
         })
 
         router.get("/mypage2", function(request,response){
-            response.render("프로필 페이지",{
-                user : request.session.user,
-                
-            });
 
+            let sql = "select user_id from follow where follower_id = ?"
+
+            conn.query(sql, [request.session.user.user_id],function(err,rows){
+                for(let i=0; i<rows.length; i++){
+                    conn.query("select * from pin where user_id = ?", [rows[i].user_id], function(err,follow_writer){
+                        console.log("zz"+rows[i].user_id);
+                        if(follow_writer){
+                            conn.query("select * from user where user_id= ?",[rows[i].user_id], function(err,user_data){
+                                console.log("천재"+user_data[i].nickname);
+                                response.render("프로필 페이지", {
+                                    user: request.session.user,
+                                    rows: rows,
+                                    follow_writer: follow_writer,
+                                    user_data : user_data
+                                });
+                            })
+                        }
+                    })
+                }
+            })
         })
 
         // 프로필 이미지 변경
@@ -700,18 +716,25 @@ router.get("/follow", function (request, response) {
                     user: request.session.user,
                     user_data: user_data
                 })
-                
-                console.log("몽총이" + comment_if.user_id);
+                conn.query("select * from pin where pin_id =" + pin_id, function (err, rows) {
+                    if (rows) {
+                        //에러 err선언해서 봐보기!!
+                        conn.query("select * from user where user_id =" + rows[0].user_id, function (err, writer) { 
+                            console.log("작성자"+writer[0].user_id);
+                            conn.query(sql, [follow_id, writer[0].user_id, request.session.user.user_id], function (err, rows) {
+                                if (rows) {
+
+                                } else { // 실패시 
+                                    console.log(err);
+                                }
+                            })
+                        })
+                    }
+                })
                 console.log("바보" + request.session.user.user_id);
                 let sql = "insert into follow values(?,?,?)";
                 
-                conn.query(sql, [follow_id, user_data[0].user_id, request.session.user.user_id], function (err, rows) { 
-                    if (rows) {
-
-                    } else { // 실패시 
-                        console.log(err);
-                    }
-                })
+                
             })
         }
 

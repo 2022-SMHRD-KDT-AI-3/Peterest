@@ -90,25 +90,29 @@
         </div>
         </div>
         <div class="gesimul_box">
-            <div class="gesimul_pic">
-                <div style="width: 252px; height: px; padding: 10px;">
-                    <form action="">
-                        <button style="border-radius: 25%;">
-                            <img class="up_gesimul" src="../public/img/profile.gif" alt="">
-                        </button>
-                    </form>
-                </div>
-                <div style="float: left;">
-                    <div>
-                        <div style="display: inline-block;">
-                            <img class="mini_porofile" src="../profile.gif">
-                        </div>
-                        <div style="display: inline-block; float:right; margin-top: 7px; margin-left: 10px;">
-                            아이디
-                        </div>
+            <%for(let i=0; i<rows.length.length; i++){%>
+                <%for(let j=0; j<follow_writer.length.length; j++){%>
+                <div class="gesimul_pic">
+                    <div style="width: 252px; height: px; padding: 10px;">
+                        <form action="">
+                            <button style="border-radius: 25%;">
+                                <img class="up_gesimul" src="../uploads/pin_img/<%=follow_writer[j].img_url%>" alt="">
+                            </button>
+                        </form>
+                    </div>
+                    <div style="float: left;">
+                         <div>
+                                    <div style="display: inline-block;">
+                                        <img class="mini_porofile" src="../uploads/pin_img/<%=user_data[0].myimg_url%>">
+                                    </div>
+                                    <div style="display: inline-block; float:right; margin-top: 7px; margin-left: 10px;">
+                                        <%=user_data[0].nickname%>
+                                    </div>
+                                </div>
                     </div>
                 </div>
-            </div>
+                <%}%>
+                <%}%>
             
         </div>
     </header>
