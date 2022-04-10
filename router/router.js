@@ -137,9 +137,6 @@ router.get("/main", function(request, response){
 })
 
 router.get("/pin", function(request, response){
-
-    // conn.query("select")
-    console.log("선택한 핀번호"+request.session.pin_all.pin_if[0].pin_id);
     
     let pin_id = request.session.pin_all.pin_if[0].pin_id;
     let sql = "select * from comment where pin_id=?";
@@ -153,21 +150,9 @@ router.get("/pin", function(request, response){
                     user: request.session.user,
                     user_data: user_data
                 })
-                console.log("바보"+user_data[0].nickname);
             })
-        }
-        
-        console.log("선재" + request.session.pin_all.writer.myimg_url);
-        console.log("댓글정보:"+comment_if);
-        
-
-        
+        }    
     })
-    
-
-
-
-
 });
 
 // 게시물 상세 페이지
@@ -175,11 +160,6 @@ router.get("/pin", function(request, response){
 router.post("/pin", function (request, response) {
 
     let pin_id = request.body.pin_id;
-
-    console.log(request.body.pin_id);
-    console.log("핀번호: " + pin_id);
-    console.log(request.session.selectpin);
-
 
     let sql = "select * from pin where pin_id=?";
 
@@ -189,6 +169,8 @@ router.post("/pin", function (request, response) {
             //에러 err선언해서 봐보기!!
             conn.query("select * from user where user_id =" + rows[0].user_id, function (err, writer) {
 
+                conn.query("select * from follow where user_id =" + rows[0].user_id, function (err, follower_cnt) {
+             
                 if (writer) {
 
                     conn.query("select * from `like`", function (err, like_C) {
@@ -211,14 +193,12 @@ router.post("/pin", function (request, response) {
                                     likeList.push(sum);
                                 }
 
-                                console.log("여긴가: " + rows[0].user_id);
-                                console.log(request.session.user.nickname);
-                                console.log("이게 문자냐?: " + request.session.comment_if);
                                 request.session.pin_all = {
                                     "pin_if": rows,
                                     "user_if": request.session.user,
                                     "writer": writer,
-                                    "likeList": likeList
+                                    "likeList": likeList,
+                                    "follower_cnt": follower_cnt
                                     // "comment_if" : comment
                                 };
                                 response.redirect("pin");
@@ -240,10 +220,9 @@ router.post("/pin", function (request, response) {
                 else {
                     console.log(err);
                 }
-                console.log("없음" + request.session.pin_all.writer[0].myimg_url);
+                    console.log("없음" + request.session.pin_all.writer[0].myimg_url);
+                })
             });
-            console.log("검색된 핀정보: " + rows[0].pin_id);
-            console.log("유저정보: " + request.session.user.email);
 
         } else { // 실패시 
             console.log(err);
@@ -545,6 +524,7 @@ router.get("/mypage2", function (req, res) {
     let sql = "select * from follow where follower_id = ?"
     let user_id = req.session.user.user_id;
     let follower_list = [];
+
     console.log("로그인한 사람 정보: " + req.session.user.user_id);
     console.log(req.session);
     // 내가 팔로우하고 있는 유저들번호
@@ -559,10 +539,11 @@ router.get("/mypage2", function (req, res) {
 
                     if (follower_pin) {
 
+                        console.log(follower_pin[0]);
                         for (let j = 0; j < follower_pin.length; j++) {
-                            console.log("성공2");
-                            console.log(i + "번째 유저 게시물 url" + follower_pin[j].img_url);
-                            follower_list.push(follower_pin[j].img_url);
+
+                            console.log(follower_pin[j]);
+                            follower_list.push(follower_pin[j]);
                         };
 
                     } else {
@@ -572,13 +553,14 @@ router.get("/mypage2", function (req, res) {
             };
 
             function log1(arg) {
+                console.log(follower_list[0]);
                 res.render("프로필 페이지", {
-                    follower : follower,
+                    follower: follower,
                     follower_list: follower_list,
                     user: req.session.user
                 });
             };
-            setTimeout(log1, 1500, 'funky');
+            setTimeout(log1, 3000, 'funky');
         } else {
             console.log(err);
         }
