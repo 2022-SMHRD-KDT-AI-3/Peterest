@@ -168,7 +168,6 @@ router.post("/pin", function (request, response) {
         if (rows) {
             //에러 err선언해서 봐보기!!
             conn.query("select * from user where user_id =" + rows[0].user_id, function (err, writer) {
-
                 conn.query("select * from follow where user_id =" + rows[0].user_id, function (err, follower_cnt) {
              
                 if (writer) {
@@ -220,7 +219,7 @@ router.post("/pin", function (request, response) {
                 else {
                     console.log(err);
                 }
-                    console.log("없음" + request.session.pin_all.writer[0].myimg_url);
+
                 })
             });
 
