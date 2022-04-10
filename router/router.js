@@ -622,7 +622,7 @@ router.post("/select_pin", function (request, response) {
     console.log("검색어가 무엇이더냐?? " + text);
     console.log("검색어가 무엇이더냐?? " + text2);
 
-    if (text = "") {
+    if (text) {
         console.log("직접검색");
         let sql = "select * from pin where title like ? or detail like ? or group_id like ?"
 
