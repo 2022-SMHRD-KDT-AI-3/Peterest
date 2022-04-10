@@ -389,7 +389,6 @@ router.get("/PwFind", function(request, response){
 
 });
 
-
 router.post("/PwFind_exe", function(request, response){ // update를 시켜주는 라우터
     
     let email = request.body.findemail;
@@ -424,6 +423,7 @@ router.post("/PwFind_exe", function(request, response){ // update를 시켜주�
     })
 
 });
+
 router.post("/login_pw_update", function (request, response) {
 
     let pw = request.body.update_pw;
@@ -444,7 +444,6 @@ router.post("/login_pw_update", function (request, response) {
         // alert("수정되었습니다.")
     });
 });
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -530,8 +529,7 @@ router.post("/upload", upload.single("img_url"), (req, res) => {
         //     rows : req.session.pin
         // })
 });
-            
-            
+              
             const upload1 = multer({
                 storage: multer.diskStorage({   // 파일이 저장될 경로
                   destination(request, file, cb) {
@@ -551,7 +549,6 @@ router.post("/upload", upload.single("img_url"), (req, res) => {
                 user: request.session.user
             })
         })
-
 
         router.get("/info2",function(request, response){
             response.render("계정관리",{
@@ -831,8 +828,5 @@ router.get("/logout", function (request, response) {
     response.redirect("http://127.0.0.1:3000/home");
 
 })
-
-
-
 
 module.exports = router;
