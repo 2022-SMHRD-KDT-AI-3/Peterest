@@ -391,7 +391,7 @@ const upload = multer({
             const ext = path.extname(file.originalname);	// 파일 확장자
             const timestamp = new Date().getTime().valueOf();	// 현재 시간
             // 새 파일명(기존파일명 + 시간 + 확장자)
-            const filename = path.basename(file.originalname, ext) + timestamp + ext;
+            const filename = path.basename(file.originalname, ext) + ext;
             cb(null, filename);
         },
     }),
@@ -451,7 +451,7 @@ router.post("/upload", upload.single("img_url"), (req, res) => {
         //     rows : req.session.pin
         // })
 });
-              
+
             const upload1 = multer({
                 storage: multer.diskStorage({   // 파일이 저장될 경로
                   destination(request, file, cb) {
@@ -515,13 +515,19 @@ router.post("/info2", function(request, response){
                 console.log(rows.length);
         
                 if(rows.length > 0){
-        
-                    response.render("프로필 게시물 표현",{
-                
-                        user : request.session.user,
-                        rows: rows
 
-                    });
+                    let sql = "select user_id from follow where follower_id = ?"
+                    conn.query(sql, [request.session.user.user_id], function (err, follow_cnt) {
+                        response.render("프로필 게시물 표현", {
+
+                            user: request.session.user,
+                            rows: rows,
+                            follow_cnt: follow_cnt
+
+                        });
+                        console.log(follow_cnt.length);
+                    })
+                    
 
                     console.log(request.session.user.email);
                     console.log(rows[0].img_url);
@@ -537,29 +543,24 @@ router.post("/info2", function(request, response){
         router.get("/mypage2", function(request,response){
 
             let sql = "select user_id from follow where follower_id = ?"
-
-            // conn.query(sql, [request.session.user.user_id],function(err,rows){
-            //     for(let i=0; i<rows.length; i++){
-            //         conn.query("select * from pin where user_id = ?", [rows[i].user_id], function(err,follow_writer){
-            //             console.log("게시물 올린사람 아이디"+rows[i].user_id);
-            //             if(follow_writer){
-            //                 console.log(rows.length);
-            //                 for (let j = 0; j < rows.length; j++) {
-            //                 conn.query("select * from user where user_id= ?",[rows[i].user_id], function(err,user_data){
-            //                     console.log("게시물 올린사람 닉네임"+user_data[i].nickname);
-            //                     console.log(user_data.length);
-                                response.render("프로필 페이지", {
-                                    user: request.session.user,
-                                    // rows: rows,
-                                    // follow_writer: follow_writer,
-                                    // user_data : user_data
-                                });
-            //                 })
-            //                 }
-            //             }
-            //         })
-            //     }
-            // })
+                
+            conn.query(sql, [request.session.user.user_id],function(err,follow_cnt){
+                console.log(follow_cnt[0].user_id);
+                if(follow_cnt.length>0){
+                    for(let i=0; i<follow_cnt.length; i++){
+                        conn.query("select * from pin where user_id = ?",[follow_cnt[i].user_id], function(err,follow_pin){
+                        console.log("내가 팔로우 한 사람 이미지"+follow_pin[i].img_url);
+                        response.render("프로필 페이지", {
+                            user : request.session.user,
+                            follow_cnt : follow_cnt,
+                            follow_pin : follow_pin
+                        });
+                    })
+                    }
+                }else{
+                    console.log(err);
+                }
+            })
         })
 
         // 프로필 이미지 변경
