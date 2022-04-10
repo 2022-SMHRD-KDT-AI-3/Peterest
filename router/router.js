@@ -282,84 +282,6 @@ router.post("/comment",function(req, res){
 
 });
 
-
-
-
-
-// 핀 작성 페이지 오픈
-// router.get("/Writing_Pin", function(request, response){
-
-//     response.render("Writing_Pin",{
-
-//     })
-
-// })
-
-// 핀 작성 페이지
-// router.post("/Writing_Pin_exe", function(request, response){
-
-//     let pin_id = null;
-//     let user_id = 1;
-//     let category = 0;
-//     let group_id = 0;
-//     let img_url = request.body.img_url;
-//     let board_id = 0;
-//     let title = request.body.title;
-//     let link = request.body.link;
-//     let detail = request.body.detail;
-
-
-//     let sql = "insert into pin values(?,?,?,?,?,?,?,?,?,now(),now())";
-    
-//     conn.query(sql,[pin_id, user_id, category, group_id, img_url, board_id, title, link, detail],function(err, rows){  //sql 실행되면 만들었던 nodejs_member 테이블로 가서 입력함  그다음에 명령이 성공하든 실패하든 이쪽 뻥션으로 들어옴 실패하면 err 에 뭔가들어가고 성공하면 rows 변수에 들어감 
-//         //sql,[id,pw,nick] 사용자가 입력할값 순서대로 넣어준다
-//      if(rows) { //만약 rows 값이 트루면
-//          response.render("login",{
-
-//          })
-//          //response.redirect("http://127.0.0.1:3000/login")
-//      }else{ // 실패시 
-//         console.log(err);
-//      }
-// });
-
-// });
-
-
-
-
-
-// router.post("/PwFind",function(request,response){
-
-//     let findemail = request.body.email;
-//     let findname = request.body.findname;
-//     let findage = request.body.findage;
-
-//     let sql = "select * from user where email = ? and name = ? and age = ?";    // sql 자체에있는 세미콜론은 안가져와도됨 !!!   // 물음표에 사용자가 입력한값 들어감
-
-    
-//     conn.query(sql,[findemail, findname, findage],function(err, rows){  //sql 실행되면 만들었던 nodejs_member 테이블로 가서 입력함  그다음에 명령이 성공하든 실패하든 이쪽 뻥션으로 들어옴 실패하면 err 에 뭔가들어가고 성공하면 rows 변수에 들어감 
-//         //sql,[id,pw,nick] 사용자가 입력할값 순서대로 넣어준다
-//         console.log(rows.length);
-
-//         if(rows.length > 0){
-
-//             // request.session.user = {  // 세션에 유저에 대한 정보 저장
-//             //     "name" : findname,
-//             //     "age" : findage,
-//             //     "email" : findemail
-//             // }    
-
-//             response.redirect("http://127.0.0.1:5500/front3/public/pwupdate.html");
-  
-//         }else{
-
-//             response.redirect("http://127.0.0.1:5500/front3/public/loginF.html")
-            
-//         }
-//     });
-// });
-
 router.post("/PwUpdate",function(request,response){
 
     let pw = request.body.PwUpdate;
@@ -728,10 +650,6 @@ router.post("/select_pin", function (request, response) {
         })
     }
 })
-
-        // router.get("/Select_Pin", function(request, response){
-
-        // })
 router.get("/follow", function (request, response) {
 
     let pin_id = request.session.pin_all.pin_if[0].pin_id;
