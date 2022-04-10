@@ -341,7 +341,7 @@ router.post("/login_pw_update", function (request, response) {
 
     conn.query(sql, [request.body.update_pw, email], function (err, rows) {
 
-        response.redirect("http://127.0.0.1:3000/main");
+        response.redirect("http://127.0.0.1:3000/home");
         // alert("수정되었습니다.")
     });
 });
