@@ -540,28 +540,50 @@ router.post("/info2", function(request, response){
             })
         })
 
-        router.get("/mypage2", function(request,response){
+router.get("/mypage2", function (req, res) {
 
-            let sql = "select user_id from follow where follower_id = ?"
-                
-            conn.query(sql, [request.session.user.user_id],function(err,follow_cnt){
-                console.log(follow_cnt[0].user_id);
-                if(follow_cnt.length>0){
-                    for(let i=0; i<follow_cnt.length; i++){
-                        conn.query("select * from pin where user_id = ?",[follow_cnt[i].user_id], function(err,follow_pin){
-                        console.log("내가 팔로우 한 사람 이미지"+follow_pin[i].img_url);
-                        response.render("프로필 페이지", {
-                            user : request.session.user,
-                            follow_cnt : follow_cnt,
-                            follow_pin : follow_pin
-                        });
-                    })
-                    }
-                }else{
-                    console.log(err);
-                }
-            })
-        })
+    let sql = "select * from follow where follower_id = ?"
+    let user_id = req.session.user.user_id;
+    let follower_list = [];
+    console.log("로그인한 사람 정보: " + req.session.user.user_id);
+    console.log(req.session);
+    // 내가 팔로우하고 있는 유저들번호
+    conn.query(sql, [user_id], function (err, follower) {
+
+        if (follower) {
+
+            let sql2 = "select * from pin where user_id = ?"
+            // 내가 팔로우하고 있는 유저 게시물들
+            for (let i = 0; i < follower.length; i++) {
+                conn.query(sql2, [follower[i].user_id], function (err, follower_pin) {
+
+                    if (follower_pin) {
+
+                        for (let j = 0; j < follower_pin.length; j++) {
+                            console.log("성공2");
+                            console.log(i + "번째 유저 게시물 url" + follower_pin[j].img_url);
+                            follower_list.push(follower_pin[j].img_url);
+                        };
+
+                    } else {
+                        console.log(err);
+                    };
+                });
+            };
+
+            function log1(arg) {
+                res.render("프로필 페이지", {
+                    follower : follower,
+                    follower_list: follower_list,
+                    user: req.session.user
+                });
+            };
+            setTimeout(log1, 1500, 'funky');
+        } else {
+            console.log(err);
+        }
+    })
+})
 
         // 프로필 이미지 변경
         router.get("/profile", function(request, response){

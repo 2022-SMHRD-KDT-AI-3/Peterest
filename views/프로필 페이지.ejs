@@ -204,7 +204,7 @@
                     <div style="margin-top: 8px;"><h1><%=user.name%></h1></div>
                     <div style="margin-top: 8px; font-size: 14px; color: #767676;"><%=user.email%></div>
                 </div>
-                <div style="margin-top: 8px; font-size: 16px;">팔로우 0명</div>
+                <div style="margin-top: 8px; font-size: 16px;">팔로우 <%=follower.length%> 명</div>
                 <div>
                     <div style="margin-top: 8px;"><button class="profile_url_btn">공유</button>
                                                 <button class="main_profile_btn"><a href="http://127.0.0.1:3000/info3">프로필 수정</a></button>
@@ -235,8 +235,8 @@
         </div>
         </div>
         <div class="gesimul_box">
-            <%=for(let i=0; i<follow_cnt; i++){%>
-            <div class="gesimul_pic">
+            <%for (let i=0; i<follower_list.length; i++){%>
+                <div class="gesimul_pic">
                     <div style="width: 252px; height: px; padding: 10px;">
                         <form action="">
                             <button style="border-radius: 25%;">
@@ -245,17 +245,17 @@
                         </form>
                     </div>
                     <div style="float: left;">
-                         <div>
+                        <div>
                             <div style="display: inline-block;">
-                                <img class="mini_porofile" src="../uploads/pin_img/<%=follow_pin[i].img_url%>">
+                                <img class="mini_porofile" src="../uploads/pin_img/<%=follower_list[i].img_url%>">
                             </div>
                             <div style="display: inline-block; float:right; margin-top: 7px; margin-left: 10px;">
-                                
+            
                             </div>
                         </div>
                     </div>
                 </div>
-            <%}%>
+                <%}%>
             
         </div>
     </header>
