@@ -211,7 +211,7 @@
                             <li>Windows 앱 설치</li>
                             <li>도움 받기</li>
                             <li>약관 및 개인정보 보기</li>
-                            <li>로그아웃</li>
+                            <li><a href="http://127.0.0.1:3000/logout">로그아웃</a></li>
                         </ul>
                     </div>
                       </div>
@@ -231,6 +231,7 @@
         <!--  *********************************** CARD ***********************************************-->
        
         <% for(let i=0; i<rows.length; i++){%>
+            <form action="http://127.0.0.1:3000/pin" method="get">
             <div class="card">
                 <img src="../uploads/pin_img/<%=rows[i].img_url%>" alt="02 Imagen">
                 <div class="contenido-hover">
@@ -240,6 +241,8 @@
                             <a class="btn-guardar" href="#">저장</a>
                         </div>
                     </div>
+                    <input style="display: none;" type="text" name="pin_id" value="<%=rows[i].pin_id%>">
+                    <input type="submit" style="background-color:transparent; border: 0cm;" value="">
                     <div class="row-inferior">
                         <div class="container-bottom-btns">
                             <a href="#" class="a-share-btn">
@@ -259,10 +262,8 @@
                     </div>
                 </div>
             </div>
+            </form>
             <%}%>
-       
-            </div>
-        </div>
     </main>
 
 

@@ -559,7 +559,7 @@ router.get("/mypage2", function (req, res) {
                     user: req.session.user
                 });
             };
-            setTimeout(log1, 3000, 'funky');
+            setTimeout(log1, 1000, 'funky');
         } else {
             console.log(err);
         }
