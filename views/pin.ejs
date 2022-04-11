@@ -342,27 +342,36 @@
                                            <h5><%=comment_if[i].content%></h5>
                                         </div>
                                     </div>
-                                    <form action="http://127.0.0.1:3000/likeup" method="post">
-                                        <div style="width: 100%; margin-left: 54px; display: inline-block;">
+                                    
+                                    
+                                    <div style="width: 100%; margin-left: 54px; display: inline-block;">
+                                        <%if(pin_all.likeList[i]<5){%>
+                                        <form action="http://127.0.0.1:3000/likeup" method="post">
+                                            
                                             <div id="none_click_heart" class="blackheart">
                                                 <button
-                                                    style="cursor: pointer; border: #111; background-color: white; display: inline-block; font-size: 15px;"
-                                                    onclick="heart_cnt()" type="submit">
-                                                    <input type="text" name="likeup" value="<%=comment_if[i].comment_id%>" style="display: none;">
+                                                style="cursor: pointer; border: #111; background-color: white; display: inline-block; font-size: 15px;"
+                                                onclick="heart_cnt()" type="submit">
+                                                <input type="text" name="likeup" value="<%=comment_if[i].comment_id%>" style="display: none;">
+                                             
                                                     <div style="color: #111; display: inline-block;">❤︎</div><span> 좋아요 <%=pin_all.likeList[i]%> </span>
+
                                                 </button>
                                             </div>
                                     </form>
-                                    
-                                    <form action="http://127.0.0.1:3000/likedown" method="post">
-                                        <div id="click_heart" class="redheart">
+                                    <%}else{%>
+                                    <form action="http://127.0.0.1:3000/likeup" method="post">
+                                        <div id="none_click_heart" class="blackheart">
                                             <button style="cursor: pointer; border: #111; background-color: white; display: inline-block; font-size: 15px;"
-                                                onclick="heart_no_cnt()" type="submit">
-                                                <input type="text" name="likedown" value="<%=comment_if[i].comment_id%>" style="display: none;">
-                                                <div style="color: red; display: inline-block;">❤︎</div><span> 좋아요 <%=pin_all.likeList[i]%> </span>
+                                                onclick="heart_cnt()" type="submit">
+                                                <input type="text" name="likeup" value="<%=comment_if[i].comment_id%>" style="display: none;">
+
+                                                <div style="color: rgb(251, 9, 9); display: inline-block;">❤︎</div><span> 좋아요 <%=pin_all.likeList[i]%> </span>
+
                                             </button>
                                         </div>
                                     </form>
+                                    <%}%>
                                     </div>
                                 </div>
                                 <%}%>

@@ -142,6 +142,7 @@ router.get("/pin", function(request, response){
     let sql = "select * from comment where pin_id=?";
     conn.query(sql,[request.session.pin_all.pin_if[0].pin_id], function(err,comment_if){
         
+        
         if (comment_if) {
             conn.query("select * from user", function (err, user_data) {
                 response.render("pin", {
