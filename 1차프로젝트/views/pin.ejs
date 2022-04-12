@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peterest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="../public/css/1.css">
+    <link rel="stylesheet" href="./css/style2.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <!-- 안성민 집가서 수정함... -->
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form action="http://127.0.0.1:3000/select_pin" method="post" name="select_form">
+        <header>
+            <nav class="flex flex-jc-e flex-ai-c">
+                <div class="logo"><a class="flex flex-ai-c flex-jc-c" href="http://127.0.0.1:3000/main"><svg class="ico">
+                            <path
+                                d="M0 12c0 5.123 3.211 9.497 7.73 11.218-.11-.937-.227-2.482.025-3.566.217-.932 1.401-5.938 1.401-5.938s-.357-.715-.357-1.774c0-1.66.962-2.9 2.161-2.9 1.02 0 1.512.765 1.512 1.682 0 1.025-.653 2.557-.99 3.978-.281 1.189.597 2.159 1.769 2.159 2.123 0 3.756-2.239 3.756-5.471 0-2.861-2.056-4.86-4.991-4.86-3.398 0-5.393 2.549-5.393 5.184 0 1.027.395 2.127.889 2.726a.36.36 0 0 1 .083.343c-.091.378-.293 1.189-.332 1.355-.053.218-.173.265-.4.159-1.492-.694-2.424-2.875-2.424-4.627 0-3.769 2.737-7.229 7.892-7.229 4.144 0 7.365 2.953 7.365 6.899 0 4.117-2.595 7.431-6.199 7.431-1.211 0-2.348-.63-2.738-1.373 0 0-.599 2.282-.744 2.84-.282 1.084-1.064 2.456-1.549 3.235C9.584 23.815 10.77 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12">
+                            </path>
+                        </svg></a></div>
+                <ul class="left-menu flex flex-ai-c">
+                    <li class="selected"><a class="flex flex-ai-c" href="http://127.0.0.1:3000/main">홈</a></li>
+                </ul>
+    
+                <div id="outer" class="nav-item input-busqueda " onclick="board()">
+                    <div id="inner" class="busqueda-lupa">
+                        <img src="../img/template/search-icon.png" alt="너 잘못 올림">
+                    </div>
+    
+                    <input type="search" name="select_text" placeholder="검색">
+    
+    
+                    <div class="busqueda-input" id="board" style="background-color: white; height: max-content;
+                                               margin-top: 580px; position: fixed; width: 1500px;">
+    
+    
+                        <ul class="searchresult" id="searchresult" style="text-align: center;">
+                            <li> <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%강아지%"> <img
+                                        src="../public/img/동물사진들/강아지 사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:36%;"> 강아지 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%고양이%"> <img
+                                        src="../public/img/동물사진들/고양이사진2.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:36%;"> 고양이 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%햄스터%"> <img
+                                        src="../public/img/동물사진들/햄스터사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:36%;"> 햄스터</div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%거북이%"> <img
+                                        src="../public/img/동물사진들/거북이사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:36%;"> 거북이 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%고슴도치%"> <img
+                                        src="../public/img/동물사진들/고슴도치사진1.png" alt="">
+                                    <div style="position: absolute; top:46%; left:32%;"> 고슴도치 </div>
+                                </button>
+                            </li>
+                            
+                            
+                            <li> <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%앵무새%"> <img
+                                        src="../public/img/동물사진들/앵무새사진4.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:36%;"> 앵무새 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%기니피그%"> <img
+                                        src="../public/img/동물사진들/기니피그사진1.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:30%;">기니피그 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%토끼%"> <img
+                                        src="../public/img/동물사진들/토끼사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:38%;">토끼 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%장수풍뎅이%"> <img
+                                        src="../public/img/동물사진들/장수풍뎅이사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:22%;">장수풍뎅이</div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%사슴벌레%"> <img
+                                        src="../public/img/동물사진들/사슴벌레사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:29%;">사슴벌레 </div>
+                                </button>
+                            
+                            </li>
+                            <li> <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%도마뱀%"> <img
+                                        src="../public/img/동물사진들/도마뱀사진.jpeg" alt="">
+                                    <div style="position: absolute; top:46%; left:36%;"> 도마뱀 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%뱀%"> <img
+                                        src="../public/img/동물사진들/뱀사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:44%;">뱀 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%관상어%"> <img
+                                        src="../public/img/동물사진들/도롱뇽사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:36%;">도롱뇽 </div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%거북이%"> <img
+                                        src="../public/img/동물사진들/관상어사진.jpg" alt="">
+                                    <div style="position: absolute; top:46%; left:36%;">관상어</div>
+                                </button>
+                                <button style=" margin: 2%" type="text" name="select_text2" class="animal_category" value="%기타%">
+                                    <div style="color: black;"> 기타</div>
+                                </button>
+                            
+                            </li>
+    
+                        </ul>
+                    </div>
+                </div>
+                <script>
+
+                    $("#board").css("display", "none");
+                    let cnt = 0;
+
+                    function board() {
+                        if (cnt == 0) {
+                            $("#board").css({
+                                "display": "block"
+
+                            });
+                            $(".galeria").css({
+                                "background-color": "rgb(194, 191, 191)"
+                            });
+                            $(".imgcolor").css({
+                                "background-color": "rgb(194, 191, 191)"
+                            });
+                            cnt = 1;
+
+                        }
+                        else {
+                            $("#board").css("display", "none");
+                            $(".galeria").css({
+                                "background-color": "white"
+                            });
+                            $(".imgcolor").css({
+                                "background-color": "white"
+                            });
+                            cnt = 0;
+                        }
+                    }
+                </script>
+                <ul class="right-menu flex">
+                    <li class="notify flex flex-ai-c"><a class="flex flex-jc-c flex-ai-c" href="#"><svg class="ico">
+                                <path
+                                    d="M12 24c-1.66 0-3-1.34-3-3h6c0 1.66-1.34 3-3 3zm7-10.83c1.58 1.52 2.67 3.55 3 5.83H2c.33-2.28 1.42-4.31 3-5.83V7c0-3.87 3.13-7 7-7s7 3.13 7 7v6.17z">
+                                </path>
+                            </svg></a></li>
+                    <li class="msg flex flex-ai-c"> <a class="flex flex-jc-c flex-ai-c" href="#"><svg class="ico">
+                                <path
+                                    d="M18 12.5a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 18 12.5m-6 0a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 12 12.5m-6 0a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 6 12.5M12 0C5.925 0 1 4.925 1 11c0 2.653.94 5.086 2.504 6.986L2 24l5.336-3.049A10.93 10.93 0 0 0 12 22c6.075 0 11-4.925 11-11S18.075 0 12 0">
+                                </path>
+                            </svg> </a></li>
+                    <li class="my-info flex flex-ai-c"><a class="ico flex flex-jc-c flex-ai-c"
+                            href="http://127.0.0.1:3000/mypage1">
+                            <div class="img-box flex flex-jc-c flex-ai-c">
+                                <img src="../uploads/pin_img/<%=user.myimg_url%>" alt="">
+                            </div>
+                        </a></li>
+                    <li class="account flex flex-ai-c ">
+    
+                            <div class="header__link header__icon dots">
+                                <div class="header__link__wrapper">
+                                    <!-- <i class="fas fa-ellipsis-h"></i> -->
+                                    <img src="img\cards-buttons\smalldown1.png" alt="안보이나">
+                                </div>
+                                <div class="dropdown__list">
+                                    <ul>
+                                        <li>
+                                            <a href="http://127.0.0.1:3000/profile">
+                                                <div>
+                                                    <img src="../uploads/pin_img/<%=user.myimg_url%>" alt=""
+                                                        style="margin: auto; border-radius: 50%; width: 120px; height: 120px;">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <span></span>
+                                        <a href="http://127.0.0.1:3000/profile">
+                                            <li> 내 계정 </li>
+                                        </a>
+                                        <li>Business 계정으로 전환</li>
+                                        <span></span>
+                                        <li>옵션 더 보기</li>
+                                        <li>설정</li>
+                                        <li>홈피드 조정</li>
+                                        <li>Windows 앱 설치</li>
+                                        <li>도움 받기</li>
+                                        <li>약관 및 개인정보 보기</li>
+                                        <li><a href="http://127.0.0.1:3000/logout">로그아웃</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <i class="fas fa-angle-down"></i></a></li> -->
+                </ul>
+            </nav>
+        </header>
+    </form>
+    <div style="height: 80px;"></div>
+    <div class="add_contents_modal" style="max-height: 5000px;" >
+        <div class="add_contents_container">
+            <div style="width: 50%; height: 100%;">
+                <img class="contents_pic" src="../uploads/pin_img/<%=pin_all.pin_if[0].img_url%>" alt="">
+            </div>
+            <div style="width: 50%; height: 100%;">
+                <div style="padding-left: 32px;">
+                    <div class="menu_headerline">
+                        <div style="width: 48px; height: 48px; display: inline-block;">
+                            <button class="pin_make_btn dots">
+                                <div style="height: 30px; width: 30px; text-align: center; margin: auto;">
+                                    <img class="gesimul_select_btn_img" src="/images/menu.png" alt="">
+                                </div>
+                                <div class="dropdown__list1">
+                                    <ul>
+                                        <li style="font-size: larger;">핀 숨기기</li>
+                                        <li style="font-size: larger;">핀 신고</li>
+                                        <li style="font-size: larger;">핀 임베드 코드 가져오기</li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
+                        <div style="width: 48px; height: 48px; display: inline-block;">
+                            <button class="pin_make_btn dots">
+                                <div style="height: 30px; width: 30px; text-align: center; margin: auto;">
+                                    <img class="gesimul_select_btn_img" src="/images/upload.png" alt="">
+                                </div>
+                                <div class="dropdown__list2">
+                                    <ul>
+                                        <li style="text-align: center; font-size: large;">이 핀 보내기</li>
+                                        <li style="text-align: center;">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/페이스북.png" alt="">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/네이버밴드.png" alt="">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/네이버블로그.png" alt="">
+                                        </li>
+                                        <li style="text-align: center;">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/밴드.png" alt="">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/유튜브1.png" alt="">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/인스타그램1.png" alt="">
+                                        </li>
+                                        <li style="text-align: center;">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/구글.png" alt="">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/카카오톡.png" alt="">
+                                            <img style="display:inline-block; margin: 4%;" src="./images/트위터1.png" alt="">
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
+                        <div style="width: 48px; height: 48px; display: inline-block;">
+                            <form action="">
+                                <button class="pin_make_btn">
+                                    <div style="height: 30px; width: 30px; text-align: center; margin: auto;">
+                                        <img class="gesimul_select_btn_img" src="../public/images/link.png" alt="">
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                        <div style="width: 70px; height: 48px; display: inline-block; float: right;">
+                            <form action="">
+                                <input style="font-size: 17px; color: white;" type="submit" class="pin_save_btn" value="저장">
+                            </form>
+                        </div>
+                    </div>
+                    <div style="margin-top: 40px;">
+                        <div>
+                            <h1><%=pin_all.pin_if[0].title%></h1>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <span>
+                                <%=pin_all.pin_if[0].detail%>
+                            </span>
+                        </div>
+                        <div>
+                            <div>
+                                <div style="float: left;">
+                                    <div style="height: 48px; width: 383px; margin-top: 15px;">
+                                        <div style="display: inline-block; width: 48px; height: 48px;">
+                                            <a href=""><img class="mini_porofile" src="../uploads/pin_img/<%=pin_all.writer[0].myimg_url%>"></a>
+                                        </div>
+                                        <div style="display: inline-block; margin-left: 5px; width: 48px;">
+                                            <div style="font-size: 16px; width: 48px;"><a href=""><%=pin_all.writer[0].nickname%></a></div>
+                                            <div style="font-size: 14px; width: 80px;">팔로워 <%=pin_all.follower_cnt.length%> 명</div>
+                                        </div>
+                                        <div style="display: inline-block; float: right;">
+                                            <form action="http://127.0.0.1:3000/follow">
+                                                <input type="submit" class="follow_btn" value="팔로우">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div> <br><br><br><br><br>
+                        </div>
+                        <div>
+                            <div style="width: 100%; height: 32px;">  
+                                <div id style="display: inline-block;">
+                                    <div id="reaple_open_btn" style="width: 32px; height: 32px; display: inline-block;">
+                                        <button class="reaple_show_btn" onclick="show_1();">
+                                            <div style="height: 30px; width: 30px; text-align: center; margin: auto;">
+                                                <img id="open_img" class="reaple_img_btn" src="../public/images/smalldown.png" alt="">
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div id="reaple_close_btn" style="width: 32px; height: 32px; display: inline-block; display: none;">
+                                        <button class="reaple_show_btn" onclick="show_2();">
+                                            <div style="height: 30px; width: 30px; text-align: center; margin: auto;">
+                                                <img id="close_img" class="reaple_img_btn" src="../public/images/close.png" alt="">
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div style=" display: inline-block;">
+                                    <h2>댓글 <%=comment_if.length%>개</h2>
+                                </div>
+                                <div style="width: 32px; height: 32px; display: inline-block;">
+                                    
+                                </div>
+                            </div>
+                            
+                            <div id="datgle_box" class="reaple_box">
+
+                                <% for(let i=0; i<comment_if.length; i++){ %>
+                                <div style="padding-top: 15px; width: 383px;">
+                                    <div style="display: inline-block; width: 48px; height: 48px; text-align: center; align-items: center;">
+                                        <%for(let j=0; j<user_data.length; j++){
+                                            if(comment_if[i].nickname == user_data[j].nickname){%>
+                                            <a href=""><img class="mini_porofile" src="../uploads/pin_img/<%=user_data[j].myimg_url%>"></a>
+                                        <%}else{
+                                        }}%> 
+                                    </div> 
+                                    <div style="display: inline-block; width: 329px; max-height: 100px; border: 1px solid #cdcdcd; border-radius: 25px; padding: 15px;;">
+                                        <div>
+                                            <h4><%=comment_if[i].nickname%></h4>
+                                        </div> 
+                                        <div>
+                                            
+                                           <h5><%=comment_if[i].content%></h5>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div style="width: 100%; margin-left: 54px; display: inline-block;">
+                                        <%if(pin_all.likeList[i]<5){%>
+                                        <form action="http://127.0.0.1:3000/likeup" method="post">
+                                            
+                                            <div id="none_click_heart" class="blackheart">
+                                                <button
+                                                style="cursor: pointer; border: #111; background-color: white; display: inline-block; font-size: 15px;"
+                                                onclick="heart_cnt()" type="submit">
+                                                <input type="text" name="likeup" value="<%=comment_if[i].comment_id%>" style="display: none;">
+                                             
+                                                    <div style="color: #111; display: inline-block;">❤︎</div><span> 좋아요 <%=pin_all.likeList[i]%> </span>
+
+                                                </button>
+                                            </div>
+                                    </form>
+                                    <%}else{%>
+                                    <form action="http://127.0.0.1:3000/likeup" method="post">
+                                        <div id="none_click_heart" class="blackheart">
+                                            <button style="cursor: pointer; border: #111; background-color: white; display: inline-block; font-size: 15px;"
+                                                onclick="heart_cnt()" type="submit">
+                                                <input type="text" name="likeup" value="<%=comment_if[i].comment_id%>" style="display: none;">
+
+                                                <div style="color: rgb(251, 9, 9); display: inline-block;">❤︎</div><span> 좋아요 <%=pin_all.likeList[i]%> </span>
+
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <%}%>
+                                    </div>
+                                </div>
+                                <%}%>
+                                <div style="padding-top: 15px; width: 383px;">
+                                    <div style="display: inline-block; width: 48px; height: 48px;">
+                                        <a href=""><img class="mini_porofile" src="../uploads/pin_img/<%=user.myimg_url%>"></a>
+                                    </div>
+                                    <div style="display: inline-block;">
+                                        <form action="http://127.0.0.1:3000/comment" method="post">
+                                        <input type="text" name="content" class="daetgle" cols="40" rows="1" placeholder="댓글 추가">
+                                    </div>
+                                    <div>
+                                            <input type="submit" class="follow_btn" value="저장">
+                                        </form>
+                                        </div>
+                                </div>
+                            </div> 
+                        </div>
+                                           
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+     <script src="../js/reaple.js"></script>
+     
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script type="text/javascript">
+    const dots = document.querySelector(".dots");
+    const dropdown = document.querySelector(".dropdown__list")
+    const container = document.querySelector(".container")
+    $('.dots').each(function () {
+
+        $(this).click(function () {
+            if ($(this).children(".dropdown__list1").css("display") == "none") {
+                $(this).children(".dropdown__list1").css("display", "block")
+            } else {
+                $(this).children(".dropdown__list1").css("display", "none")
+            }
+        });
+
+        $(this).click(function () {
+            if ($(this).children(".dropdown__list2").css("display") == "none") {
+                $(this).children(".dropdown__list2").css("display", "block")
+            } else {
+                $(this).children(".dropdown__list2").css("display", "none")
+            }
+        });
+
+    });
+    dots.addEventListener("click", () => {
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none"
+            } else {
+                dropdown.style.display = "block"
+            }
+        })
+
+        container.addEventListener("click", () => {
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none"
+            }
+        })
+
+        function press(f) {
+            if (f.keyCode == 13) {
+                Select_form.submit();
+            }
+        }
+
+</script>
+
+</body>
+</html>

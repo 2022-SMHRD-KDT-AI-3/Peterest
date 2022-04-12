@@ -1,0 +1,536 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, button, input {
+  font-family: -apple-system, Segoe UI, Roboto, 
+ Oxygen-Sans, Ubuntu, Cantarell, 
+ Fira Sans, Droid Sans, 
+ Helvetica Neue, Arial, sans-serif;
+}
+
+*, li {
+  list-style: none;
+}
+
+.animate-before {
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.animate-after {
+  -webkit-transform: translateY(-40px);
+          transform: translateY(-40px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 28px 15px 24px;
+}
+
+header .logo-div {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+header .logo {
+  color: #e60023;
+  fill: currentColor;
+  display: block;
+}
+
+header h3 {
+  color: #e60023;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header nav ul li {
+  padding: 16px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #111;
+  font-weight: 700;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+header nav .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 24px;
+}
+
+header nav .buttons button {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 11px 12px;
+  border-radius: 24px;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header nav .buttons .login {
+  color: #fff;
+  background: #e60023;
+}
+
+header nav .buttons .register {
+  margin-left: 16px;
+  background: #efefef;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 3px 0;
+  display: inline-block;
+  border: 2px solid #efefef;
+  border-radius: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 48px;
+}
+
+/* Set a style for all buttons */
+.m-button {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 11px 12px;
+  border-radius: 24px;
+  border: 0px none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  background: #e60023;
+  height: 40px;
+  outline: currentcolor none medium;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.m-button.facebook {
+  background: #0076d3;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-top: 5px;
+}
+
+.m-button.facebook svg {
+  fill: currentColor;
+  float: left;
+}
+
+.m-button.google {
+  margin-top: 10px;
+  background: #fff;
+  border: 1px solid #efefef;
+  font-family: "Google Sans", sans-serif;
+  font-weight: 400;
+  color: #111;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.icon-container {
+  text-align: center;
+  position: block;
+  width: 45px;
+  margin: 5px auto 8px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 268px;
+}
+
+.container a {
+  font-weight: bold;
+  color: #333333;
+  text-decoration: none;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+.modal1 {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  min-height: 400px;
+  padding: 20px 10px 24px;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  border-radius: 2%;
+  width: 25%;
+}
+
+.modal-content h3 {
+  color: #333333;
+  font-size: 36px;
+  font-weight: 600;
+  word-break: break-word;
+  text-align: center;
+  margin: 0px auto 18px;
+  letter-spacing: -1.3px;
+}
+
+.modal-content .post-info p {
+  font-size: 11px;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+
+.modal-content .post-info hr {
+  width: 25%;
+  margin: 10px auto;
+  border-top: 1px solid #dedede;
+}
+
+.modal-content .post-info a {
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 15px;
+  margin: auto;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  padding-left: 180px;
+  margin: auto;
+  height: 40px;
+  width: 40px;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+.heading {
+  margin-top: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.heading .text {
+  font-size: 60px;
+  font-weight: 600;
+}
+
+.heading .wrapper {
+  position: relative;
+}
+
+.heading .wrapper .offset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.heading .wrapper .text {
+  white-space: nowrap;
+  color: #e60023;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.heading .wrapper .text.case-summer {
+  color: #0076d3;
+}
+
+.heading .wrapper .text.case-diy {
+  color: #407a57;
+}
+
+.heading .wrapper .text.case-dinner {
+  color: #c28b00;
+}
+
+.heading .wrapper .text.case-kids {
+  color: #618c7b;
+}
+
+.grid-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (7, 252px);
+      grid-template-columns: repeat(7, 252px);
+  max-height: 0px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.grid.active {
+  max-height: unset;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.column {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.column:nth-child(1) {
+  margin-top: 0;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.column:nth-child(2) {
+  margin-top: 160px;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+.column:nth-child(3) {
+  margin-top: 320px;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+}
+
+.column:nth-child(4) {
+  margin-top: 480px;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+}
+
+.column:nth-child(5) {
+  margin-top: 320px;
+  -webkit-transition-delay: 0.8s;
+          transition-delay: 0.8s;
+}
+
+.column:nth-child(6) {
+  margin-top: 160px;
+  -webkit-transition-delay: 1s;
+          transition-delay: 1s;
+}
+
+.column:nth-child(7) {
+  margin-top: 0px;
+  -webkit-transition-delay: 1.2s;
+          transition-delay: 1.2s;
+}
+
+.item {
+  width: 236px;
+  height: 350px;
+  background: #e60023;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+.item:not(:first-child) {
+  margin-top: 16px;
+}
+
+.item img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+/*# sourceMappingURL=styles.css.map */
+
+#outer{
+  margin: 0 auto;
+}
+button.please{
+  position: absolute;
+  top: 430px;
+  left: 930px;
+  color: #fff;
+  background: #e60023;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 11px 12px;
+  border-radius: 24px;
+  border: none;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+button.please1 {
+  position: absolute;
+  top: 430px;
+  left: 930px;
+  color: #fff;
+  background: #e60023;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 11px 12px;
+  border-radius: 24px;
+  border: none;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
