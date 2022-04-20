@@ -10,5 +10,8 @@ Pinterest Clone
 ## 주요 구현 기능
 
 ## 개발 및 작업 환경
-
+* 사용언어: Html/Css, Jquery, Javascript
+* 개발도구: Vscode
+* 서버: Nodejs
+* 데이터베이스: Mysql
 ## 팀원 단위 업무 분장 및 결과표
