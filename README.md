@@ -1,6 +1,7 @@
 # -COMA-Team-Address
 Pinterest Clone
 ## Peterest란?
+회원들 간의 반려동물 이미지 공유 및 소통 SNS 서비스
 
 ## 주제 및 목표
 리버스 엔지니어링 기법을 통한
