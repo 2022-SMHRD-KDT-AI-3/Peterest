@@ -46,8 +46,8 @@ Pinterest를 Clone하여 이미지 중심의 새로운 SNS 개발
 ## 5. 팀원 단위 업무 분장 및 결과표
  <table>
         <tr>
-          <th>팀원<</th>
-            <th>엄무 분야</th>
+          <th>팀원</th>
+            <th>업무 분야</th>
             <th>분장업무</th>
         </tr>
         <tr>
