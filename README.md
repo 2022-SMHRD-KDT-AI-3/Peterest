@@ -5,9 +5,11 @@ Pinterest Clone
 <b>Pet + Pinterest = Peterest</b> <br>
 회원들 간의 반려동물 이미지 공유 및 소통 SNS 서비스
 
+
 ## 2. 주제 및 목표
 <b>리버스 엔지니어링</b>(Reverse Engineering) 기법을 통한<br>
 Pinterest를 Clone하여 이미지 중심의 새로운 SNS 개발
+
 
 ## 3. 주요 구현 기능
 <b>1. 로그인, 회원가입, PW찾기</b> <br><br>
@@ -39,6 +41,7 @@ Pinterest를 Clone하여 이미지 중심의 새로운 SNS 개발
  * <h4> Tools </h4>
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
+
  
 ## 5. 팀원 단위 업무 분장 및 결과표
  <table>
@@ -55,7 +58,7 @@ Pinterest를 Clone하여 이미지 중심의 새로운 SNS 개발
         <tr>
             <td>엄선경</td>
             <td>Front-End</td>
-            <td>###</td>
+            <td>웹 디자인 수정/보완 | 산출문서 작성</td>
         </tr>
           <tr>
             <td>이선재</td>
@@ -65,7 +68,7 @@ Pinterest를 Clone하여 이미지 중심의 새로운 SNS 개발
           <tr>
             <td>김하빈</td>
             <td>Front-End</td>
-            <td>###</td>
+            <td>웹 디자인 수정/보완 | 산출문서 작성</td>
         </tr>
           <tr>
             <td>안성민</td>
@@ -73,6 +76,9 @@ Pinterest를 Clone하여 이미지 중심의 새로운 SNS 개발
             <td>###</td>
         </tr>
     </table>
-
+    
+    
+## 5. 페이지 링크
+<h2>https://github.com/2022-SMHRD-KDT-AI-3/-COMA-Team-Address</h>
 
 
