@@ -25,7 +25,9 @@ Pinterest Clone
 8. 프로필
   : 팔로우 수, 작성글, 팔로우 게시물, 자기정보를 볼 수 있음
 
-![Uploading image.png…]()
+![캡처](https://user-images.githubusercontent.com/98801776/164344410-c99cc2f6-26a6-4523-8675-3661476a2aef.PNG)
+
+
 
 ## 개발 및 작업 환경
 * 사용언어: Html/Css, Jquery, Javascript
